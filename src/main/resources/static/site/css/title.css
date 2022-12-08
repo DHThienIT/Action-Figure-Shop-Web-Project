@@ -1,0 +1,43 @@
+.form-input {
+    flex: 1;
+
+}
+
+.form-select {
+    flex: 1;
+}
+
+.form-select:first-child {
+    margin-right: 16px;
+}
+
+.form-row {
+    display: flex;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+h3.title {
+    text-align: center;
+    margin-top: 2rem;
+    color: #1e90ff;
+}
+
+.them {
+    padding: 5px 40px;
+}
+table > thead{
+    vertical-align: top !important;
+}
+.product-img{
+    height: 10rem;
+}
+
+.action-icon{
+    text-align: center;
+}
+
+.action-text{
+    font-size: 1.3rem;
+    color: #000;   
+}

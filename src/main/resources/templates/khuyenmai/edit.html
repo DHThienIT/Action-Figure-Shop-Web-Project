@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{LayoutWeb/dashboardLayout.html}">
+
+<head>
+<meta charset="UTF-8">
+<style>
+.hiden {
+	visibility: hidden;
+	z-index: -1;
+	position: absolute;
+}
+</style>
+</head>
+
+<body translate="no">
+	<div layout:fragment="content">
+		<div class="section">
+			<div class="containter row justify-content-center">
+				<div class="col-4 m-auto">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="section-title ">
+									<h5 class="a-h5">Chỉnh sửa khuyến mãi</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+		<div class="container">
+					<div class="col-4">
+						<a  class="btn btn-primary" th:href = "@{/khuyenmai/danhsach}"
+							>
+							Danh sách khuyến mãi</a>
+
+					</div>
+
+			<table class="table table-striped table-hover"
+				style="margin-top: 10px;margin-bottom: 238px">
+				<thead>
+					<tr style="background: black; color: white;">
+					<th scope="col">ID</th>
+						<th scope="col">Tên khuyến mãi</th>
+						<th scope="col">Phần trăm khuyến mãi</th>
+						<th scope="col">Ngày bắt đầu</th>
+						<th scope="col">Ngày kết thúc</th>
+						<th scope="col">Quản lí</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<form id="contactForm"
+							th:action="@{/khuyenmai/edit}"
+							th:object="${khuyenmai}" method="post">
+							<td  ><input readonly="readonly" class="form-control"  type="text"
+							  name="id"	th:value="${khuyenmai.id}"/>
+							</td>
+					<td><input class="form-control" required type="text"
+							  name="name"
+							th:value="${khuyenmai.name}"/></td>
+						<td><input class="form-control" required type="text"
+							 name="phantramKM"
+							th:value="${khuyenmai.phantramKM}"/></td>
+							
+							
+							<td><input class="form-control" required type="date"
+							 name="ngayBD"
+							th:value="${khuyenmai.ngayBD}"/></td>
+							<td><input class="form-control" required  type="date"
+							 name="ngayKT"
+							th:value="${khuyenmai.ngayKT}"/></td>
+							
+							
+						<td><button class="btn btn-primary btn-sm " type="submit">Lưu</button>
+						</td>
+						</form>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+
+</html>

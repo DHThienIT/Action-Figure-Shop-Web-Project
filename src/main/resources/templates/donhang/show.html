@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{LayoutWeb/dashboardLayout.html}">
+
+<head>
+<meta charset="UTF-8">
+<style>
+.hiden {
+	visibility: hidden;
+	z-index: -1;
+	position: absolute;
+}
+</style>
+</head>
+
+<body translate="no">
+	<div layout:fragment="content">
+		<div th:if="${tt}==2" class="alert alert-danger  alert-dismissible"
+			style="height: 46px; position: absolute; float: right; margin-left: 1087px; margin-top: -47px; line-height: 13px; width: 392px;">
+			<a href="#" class="close" data-dismiss="alert" aria-label="close"
+				style="float: right; font-size: 38px;">&times;</a> <strong
+				style="font-size: 18px;">Đơn hàng không được duyệt!</strong>
+		</div>
+		<div th:if="${tt}==1"
+			class="alert alert-success topup alert-dismissible"
+			style="height: 46px; position: absolute; float: right; margin-left: 1087px; margin-top: -47px; line-height: 13px; width: 392px;">
+			<a href="#" class="close" data-dismiss="alert" aria-label="close"
+				style="float: right; font-size: 38px;">&times;</a> <strong
+				style="font-size: 20px;">Duyệt đơn hàng thành công!</strong>
+		</div>
+		<div class="section">
+			<div class="containter row justify-content-center">
+				<div class="col-4 m-auto">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="section-title ">
+									<h5 class="a-h5">Danh sách đơn hàng</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-10 row align-items-start ">
+					<!-- <div class="col-4">
+						<button type="button" class="btn btn-primary"
+							data-bs-toggle="modal" data-bs-target="#exampleModal">
+							Quản lý sản phẩm</button>
+					</div> -->
+					<div th:if="${khongthem}!=null" class="alert alert-danger"
+						role="alert" style="margin-top: 25px;" th:text="${khongthem}">
+						A simple danger alert—check it out!</div>
+					<div th:if="${them}!=null" class="alert alert-success" role="alert"
+						style="margin-top: 25px;" th:text="${them }"></div>
+				</div>
+
+			</div>
+		</div>
+		<div class="container">
+
+			<table class="table table-striped table-hover"
+				style="margin-top: 10px;">
+				<thead>
+					<tr style="background: black; color: white;">
+
+						<th scope="col">Tên người đặt hàng</th>
+						<th scope="col">Ngày đặt</th>
+						<th scope="col">Địa chỉ</th>
+						<th scope="col">Email</th>
+						<th scope="col">Phone</th>
+
+						<th scope="col">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="item : ${listHoaDon}" class="table-primary">
+						<td th:text="${item.user.getFullname()}"></td>
+						<td th:text="${item.getDateCreate()}"></td>
+						<td th:text="${item.user.getAddress()}"></td>
+						<td th:text="${item.user.getEmail()}"></td>
+						<td th:text="${item.user.getPhone()}"></td>
+
+						<td><a th:href="@{'duyet/'+${item.getId()}}"
+							class="btn btn-success btn-sm " role="button">Duyệt Đơn</a> <a
+							th:href="@{'khongduyet/'+${item.getId()}}"
+							class="btn btn-danger btn-sm" role="button">Không Duyệt</a></td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</body>
+
+</html>

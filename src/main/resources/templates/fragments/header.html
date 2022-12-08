@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta charset="UTF-8">
+</head>
+
+<body>
+	<div th:fragment="header">
+		<!-- Header section -->
+
+		<header class="text-dark"
+			style="padding-top: 1rem !important; margin-bottom: -14px;">
+			<div class="container">
+
+				<div th:if="${dangnhapthanhcong}!=null"
+					class="alert topup alert-success alert-dismissible"
+					style="height: 57px; position: absolute; float: right; margin-left: 970px; margin-top: 45px; line-height: 22px; width: 392px;">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close"
+						style="float: right; font-size: 50px;">&times;</a> <strong
+						style="font-size: 25px;">Đăng nhập thành công!</strong>
+				</div>
+				<div th:if="${ok}!=null"
+					class="alert topup alert-success alert-dismissible"
+					style="text-align: center; height: 57px; position: absolute; float: right; margin-left: 850px; margin-top: 45px; line-height: 22px; width: 550px;">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close"
+						style="float: right; font-size: 50px;">&times;</a> <strong
+						style="font-size: 25px;"> <span th:text="${ok}"></span></strong>
+				</div>
+				<div th:if="${error}!=null"
+					class="alert topup alert-danger alert-dismissible"
+					style="text-align: center; height: 57px; position: absolute; float: right; margin-left: 850px; margin-top: 45px; line-height: 22px; width: 550px;">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close"
+						style="float: right; font-size: 50px;">&times;</a> <strong
+						style="font-size: 25px;"> <span th:text="${error}"></span></strong>
+				</div>
+
+				<div th:if="${message != null}"
+					class="alert topup alert-danger alert-dismissible"
+					style="height: 57px; position: absolute; float: right; margin-left: 870px; margin-top: 45px; line-height: 22px; width: 500px;">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close"
+						style="float: right; font-size: 50px;">&times;</a> <strong
+						style="font-size: 25px;">Bạn không đủ quyền truy cập!</strong>
+				</div>
+
+				<div th:if="${dadangnhap!=null and ok==null and nhanduockhuyenmai==null}"
+					class="alert topup  alert-info alert-dismissible"
+					style="height: 57px; position: absolute; float: right; margin-left: 970px; margin-top: 45px; line-height: 22px; width: 392px;">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close"
+						style="float: right; font-size: 50px;">&times;</a> <strong
+						style="font-size: 25px;">Bạn đã đăng nhập!</strong>
+				</div>
+
+				<div th:if="${nhanduockhuyenmai!=null}"
+					class="alert topup alert-success alert-dismissible"
+					style="height: 43px; position: absolute; float: right; margin-left: 917px; margin-top: 30px; line-height: 21px; width: 483px;">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close"
+						style="float: right; font-size: 50px;">&times;</a> <strong
+						th:text="${nhanduockhuyenmai}" style="font-size: 25px;"></strong>
+				</div>
+
+
+
+				<div
+					class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+					<div class="col-lg-7 col-md-6 col-12">
+						<ul
+							class="nav col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+							<img id="logo">
+							<li style="padding: 0px; margin-right: 15px;" class="nav-tem"><a
+								href="/home" class="nav-link px-2 text-secondary">Home</a></li>
+							<li style="padding: 0px; margin-right: 15px;" class="nav-tem"><a
+								href="/sanpham/sanphamshow" class="nav-link px-2 text-dark">Sản
+									phẩm</a></li>
+							<li style="padding: 0px; margin-right: 15px;" class="nav-tem"><a
+								href="/sanpham/sanphamdaxem" class="nav-link px-2 text-dark">Sản
+									phẩm đã xem</a></li>
+
+							<li>
+								<ul>
+									<li>
+										<form class="d-flex" th:action="@{/searchs}" method="POST">
+											<input id="test"
+												style="width: 289px; height: 38px; display: block; width: 100%; padding: 0.375rem 0.75rem; font-size: 1rem; font-weight: 400; line-height: 1.5; color: #212529; background-color: #fff; background-clip: padding-box; border: 1px solid #ced4da; -webkit-appearance: none; -moz-appearance: none; appearance: none; border-radius: 0.25rem; transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; color: #212529; background-color: #fff; border-color: #86b7fe; outline: 0; box-shadow: 0 0 0 0.25rem rgb(13 110 253/ 25%);"
+												class="form-control me-2" type="search" name="keyword"
+												placeholder="Search" aria-label="Search">
+											<button
+												class="btn btn-outline-success btn btn-primary text-dark "
+												type="submit">Search</button>
+										</form>
+									</li>
+
+									<li>
+										<div class="test"></div>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+					<div class="col-lg-2 col-md-2 col-12" style="margin-left: 10px;">
+						<nav id="navbar" class="navbar" style="background-color: #fff;">
+							<ul style="text-decoration: none;">
+								<!-- <li><a href="contact.html">Contact Us</a></li> -->
+								<li class="nav-tem" style="padding: 0px; margin-right: 15px;">
+									<a href="/sanpham/giohang" class="nav-link px-2 text-dark">
+										<div class="cart">
+											<i class="lni lni-cart fa-lg" aria-hidden="true"></i> <sup
+												id="sl" th:if="@{session.soluong}!=0"
+												th:text="@{session.soluong}?${session.soluong}:null"
+												style="margin-right: 0px; font-size: 15px; color: red; margin-left: -8px;">
+											</sup> Giỏ hàng
+
+
+										</div>
+								</a>
+								</li>
+								<li class="nav-tem" style="padding: 0px; margin-right: 15px;">
+									<a href="/tintuc/user" class="nav-link px-2 text-dark">Tin
+										tức</a>
+								</li>
+								<!-- --------------------------------------------------------------------- -->
+
+								<li
+									th:if="${isNameCookie}=='defaultCookieValue' and ${isNameSession}==null "
+									style="padding: 0px; margin-right: 15px;" id="nav-tem"
+									class="dropdown nav-item"><a href="#"
+									class="nav-link px-2 text-dark">
+										<div class="user">
+											<i class="lni lni-user"></i> Hello Guest
+										</div>
+								</a>
+									<ul>
+										<li style="padding: 0px; margin-right: 15px;"><a
+											th:href="@{/login}" class="nav-link px-2 text-dark">Đăng
+												nhập</a></li>
+										<li style="padding: 0px; margin-right: 15px;"><a
+											th:href="@{/register}" class="nav-link px-2 text-dark">Đăng
+												ký</a></li>
+									</ul></li>
+
+
+								<li
+									th:if="(${isNameCookie}!='defaultCookieValue') or (${isNameSession}!= null)"
+									class="nav-tem" style="padding: 0px; margin-right: 15px;"><a
+									href="#">
+										<div class="user"
+											th:text="${isNameCookie}!='defaultCookieValue'?'Hello ' +${isNameCookie}:'Hello ' +${isNameSession}">
+										</div>
+								</a></li>
+								<li class="nav-tem"
+									th:if="${isNameCookie}!='defaultCookieValue' or ${isNameSession}!= null ">
+									<div class="dropdown">
+										<a
+											class="dropdown-toggle d-flex align-items-center hidden-arrow"
+											href="#" id="navbarDropdownMenuAvatar" role="button"
+											data-mdb-toggle="dropdown" aria-expanded="false"> <img
+											style="width: 40px; height: 40px;"
+											th:src="@{'site/images/'+${userimage}}"
+											class="rounded-circle" height="25" alt="" loading="lazy" />
+										</a>
+										<ul class="dropdown-menu dropdown-menu-end"
+											aria-labelledby="navbarDropdownMenuAvatar">
+											<li><a class="dropdown-item" href="/nguoidung/profile">Thông
+													tin cá nhân</a></li>
+											<li><a class="dropdown-item" href="/hoadon/lichsu">Lịch
+													sử mua hàng</a></li>
+											<li><a class="dropdown-item" href="/changepassword">Đổi
+													mật khẩu</a></li>
+											<li><a class="dropdown-item" th:href="@{/logout}">Đăng
+													xuất</a></li>
+										</ul>
+									</div>
+								</li>
+
+							</ul>
+						</nav>
+						<!-- .navbar -->
+					</div>
+				</div>
+			</div>
+
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-lg-3 col-md-3 col-12" style="padding-bottom: 10px;">
+						<div class="nav-inner">
+							<div class="mega-category-menu">
+								<div class="offcanvas offcanvas-start" id="demo">
+									<div class="offcanvas-body">
+										<div class="offcanvas-header nav-item">
+											<h3 style="color: #0d6efd; width: 100%; line-height: 3px;">
+												Danh mục quản lí
+												<button type="button" class="btn-close"
+													style="margin-left: 23px;" data-bs-dismiss="offcanvas"></button>
+												­
+											</h3>
+
+										</div>
+										<ul class="nav nav-tabs"
+											style="display: block; font-size: 17px; font-family: Arial, Helvetica, sans-serif;">
+											<li class="nav-tem"><strong><a class="nav-link"
+													href="/loaisanpham/danhsach">Danh sách loại sản phẩm</a></strong></li>
+											<li class="nav-tem"><strong><a class="nav-link"
+													href="/sanpham/danhsach">Danh sách sản phẩm</a></strong></li>
+											<li class="nav-tem"><strong><a class="nav-link"
+													href="/nhasanxuat/danhsach">Danh sách nơi sản xuất</a></strong></li>
+											<li class="nav-tem"><strong><a class="nav-link"
+													href="/khuyenmai/danhsach">Danh sách Khuyễn mãi</a></strong></li>
+											<li class="nav-tem"><strong><a class="nav-link"
+													href="/tintuc/danhsach">Danh sách Tin tức</a></strong></li>
+											<li class="nav-tem"><strong><a class="nav-link"
+													href="/nguoidung/danhsach">Danh sách người dùng </a></strong></li>
+											<li class="nav-tem"><strong><a class="nav-link"
+													href="/hoadon/danhsach">Danh sách hóa đơn</a></strong></li>
+											<li class="nav-tem"><strong><a class="nav-link"
+													href="/hoadon/danhsachdonhang">Danh sách đơn hàng cần
+														duyệt</a></strong></li>
+											<li class="nav-tem"><strong><a class="nav-link"
+													href="/sanpham/quangcao">Gửi quảng cáo sản phẩm</a></strong></li>
+											<li class="nav-tem"><strong><a class="nav-link"
+													href="/nguoidung/bieudo">Thống kê </a></strong></li>
+										</ul>
+										<!-- <div class="offcanvas-header nav-item">
+											<h3 style="color: #0d6efd">Tất cả sản phẩm</h3>
+											<button type="button" class="btn-close"
+												data-bs-dismiss="offcanvas"></button>
+										</div>
+										<ul class="nav nav-tabs" style="display: block;">
+											dsbadashjdjahsdhjashjdhjasdhahjsdhjashjd
+										</ul> -->
+									</div>
+								</div>
+
+								<div class="container-fluid mt-3" th:if="${session.role==2}">
+									<span class="nav-link2"
+										style="font-weight: bolder; font-size: larger;"> Danh
+										mục quản lí</span>
+									<button class="btn btn-primary" type="button"
+										data-bs-toggle="offcanvas" data-bs-target="#demo">
+										<i class="lni lni-menu" data-bs-target="#demo"
+											aria-hidden="true"></i>
+									</button>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-12">
+						<div class="top-middle">
+							<marquee direction="right" scrolldelay="6" scrollamount="5"
+								onmouseover="this.stop()" onmouseout="this.start()">
+								<a href="/home">
+									<h3>
+										<a href="/home" style="color: #0d6efd;" class="nav-link px-2">Chào
+											mừng quý khách đến với website của chúng tôi!. Chúc quý khách
+											có trải nghiệm tốt!</a>
+									</h3>
+								</a>
+							</marquee>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+	</div>
+</body>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{LayoutWeb/dashboardLayout.html}">
+
+<head>
+<meta charset="UTF-8">
+<style>
+.hiden {
+	visibility: hidden;
+	z-index: -1;
+	position: absolute;
+}
+</style>
+</head>
+
+<body translate="no">
+	<div layout:fragment="content">
+		<div class="section">
+			<div class="containter row justify-content-center">
+				<div class="col-4 m-auto">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="section-title ">
+									<h5 class="a-h5">Danh sách tin tức</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-10 row align-items-start ">
+					<div class="col-4">
+						<button type="button" class="btn btn-primary"
+							data-bs-toggle="modal" data-bs-target="#exampleModal">
+							Thêm mới tin tức</button>
+
+
+						<!-- Modal -->
+						<div class="modal fade" id="exampleModal" tabindex="-1"
+							aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">						
+										<button type="button" class="btn-close"
+											data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body">
+										<div class="container">
+											<div class="row justify-content-center">
+												<div class="col-lg-8" style="margin-right: 137px;">
+													<div class="card border-0 rounded-3 shadow-lg"
+														style="width: 408px;">
+														<div class="card-body p-4">
+															<div class="text-center">
+																<div class="h1 fw-light">
+																	<h5 class="a-h5">Thêm mới tin tức</h5>
+																</div>
+															</div>
+
+															<form id="contactForm"  th:action="@{/tintuc/them}"  enctype ="multipart/form-data" 													
+																method="post">
+																<!-- Name Input -->
+																<div class="form-floating mb-3">
+																	<input class="form-control"  type="text"  name="name"
+																		placeholder="name"  required /> <label
+																		for="name">Tên tin tức</label>
+
+																</div>
+
+																<!-- Email Input -->
+																<div class="form-floating mb-3">														
+																	<div class="input-group mb-3">
+																			<div class="input-group mb-3">
+																			<img id="hinhmau" src="#" class="hiden" 
+																				style="height: 200px; width: 200px;">
+																		</div>
+																		<br>
+																		<input id="anh" type="file" name="file" /><br />
+																		<br />																
+																	</div>
+																</div>
+
+																<!-- SDT Input -->
+																<div class="form-floating mb-3">
+																	<input class="form-control" id="phone" name="loaitin"
+																		type="text" placeholder="Marvel" required />
+																	<label for="phoneAddress">Loại tin tức</label>
+
+
+																</div>
+																<!-- Message Input -->
+																<div class="form-floating mb-3">
+																	<textarea class="form-control"  type="text"
+																		placeholder="Message"  name="noidung"
+																		style="height: 10rem;" data-sb-validations="required"></textarea>
+																	<label for="mota">Nội dung tin tức</label>
+
+																</div>
+							
+																<!-- Submit button -->
+																<div class="d-grid">
+																	<button class="btn btn-primary btn-lg "
+																		id="submitButton" type="submit">Submit</button>
+																</div>
+															</form>
+															<!-- End of contact form -->
+
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary"
+											data-bs-dismiss="modal">Close</button>
+										<button type="button" class="btn btn-primary">Save
+											changes</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<div th:if="${khongthem}!=null" class="alert alert-danger"
+						role="alert" style="margin-top: 25px;" th:text="${khongthem}">
+						A simple danger alert—check it out!</div>
+					<div th:if="${them}!=null" class="alert alert-success" role="alert"
+						style="margin-top: 25px;" th:text="${them }"></div>
+				</div>
+
+			</div>
+		</div>
+		<div class="container">
+			<table class="table table-striped table-hover"
+				style="margin-top: 10px;">
+				<thead>
+					<tr style="background: black; color: white;">
+					
+						<th scope="col">Tên tin tức</th>
+						<th scope="col">Loại tin</th>
+						<th scope="col">Hình ảnh</th>						
+						<th scope="col" style="width: 450px;">Nội dung</th>
+						<th scope="col">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="item : ${listtintuc}" >
+					
+						<td th:text="${item.name}"></td>
+						<td th:text="${item.loaitin}" ></td>
+						<td>
+							<img style="width: 140px;height:100px; " th:src="@{'/site/images/' + ${item.image}}" alt="lỗi">
+						</td>
+			
+						<td  th:text="${item.noidung}">4</td>
+		
+
+						<td><a class="btn btn-primary btn-sm " th:href="@{'/tintuc/sua/'+${item.id}}"
+							 role="button">Sửa</a>
+							<a class="btn btn-primary btn-sm" th:href="@{'/tintuc/xoa/'+${item.id}}"
+							 role="button">Xóa</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</body>
+
+</html>

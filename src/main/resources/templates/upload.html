@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<style>
+			.hiden{
+				visibility: hidden;
+				z-index: -1;
+				position: absolute;
+			}
+		</style>
+	</head>
+<body>
+
+<form method="POST" action="/upload" enctype="multipart/form-data" style="z-index: 2;">
+    <input id="anh" type="file" name="file" /><br/><br/>
+	<div class="input-group mb-3">
+		<img id="hinhmau" src="#"  class="hiden" style="height:200px ;width:200px;">
+
+	</div><br>
+    <input type="submit" value="Submit" />
+</form>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"
+integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc"
+crossorigin="anonymous"></script>
+<script src=https://code.jquery.com/jquery-3.6.0.min.js></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	  $("#anh").change(function(event){
+		  event.preventDefault()
+		  var name=$('#anh').val();
+		
+		 
+		var tmppath = URL.createObjectURL(event.target.files[0]);
+            $("#hinhmau").fadeIn("fast").attr('src', tmppath)
+	   console.log("dssdds"+tmppath);
+            $("#hinhmau").removeClass("hiden");
+	 
+
+	   
+	  });
+	});
+</script>
+</body>
+
+</html>

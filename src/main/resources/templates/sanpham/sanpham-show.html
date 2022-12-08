@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{LayoutWeb/dashboardLayout.html}">
+
+<head>
+<meta charset="UTF-8">
+
+<style>
+.an {
+	pointer-events: none;
+	cursor: default;
+	text-decoration: none;
+	background-color: gray;
+	color: white;
+}
+
+.dropbtn {
+	background-color: #4CAF50;
+	color: white;
+	padding: 16px;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+}
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	font-size: 17px;
+	min-width: 133px;
+	box-shadow: 0px 8px 16px 0px rgb(0 0 0/ 20%);
+	z-index: 1;
+}
+
+.dropdown-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-content a:hover {
+	background-color: #f1f1f1
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+.dropdown:hover .dropbtn {
+	background-color: #3e8e41;
+}
+</style>
+</head>
+
+<body translate="no">
+	<div class="container" layout:fragment="content">
+
+
+		<h2>
+			<strong>Sản phẩm</strong>
+			<div
+				style="width: 96px; position: relative; float: right; padding: 0px !important;">
+
+				<a
+					style="text-align: center; margin: -520px; margin-top:28px; position: absolute;"
+					class="btn btn-primary" href="sapxep/tangdan">Giá tăng dần</a> <a
+					style="text-align: center; margin: -395px; margin-top:28px; position: absolute;"
+					class="btn btn-primary" href="sapxep/giamdan">Giá giảm dần</a> <a
+					style="text-align: center; margin: -265px; margin-top:28px; position: absolute;"
+					class="btn btn-primary" href="sapxep/sanxuat">Sản xuất gần đây</a>
+
+
+				<div class="dropdown "
+					style="text-align: center; margin: -107px; margin-top: 28px; position: absolute;">
+					<button class="dropbtn">
+						Dropdown <i class="dropdown-toggle"></i>
+					</button>
+					<div class="dropdown-content">
+						<a href="/sapxep/0">Dưới 1$</a> <a href="/sapxep/1">Từ 1
+							- 3$</a> <a href="/sapxep/3">Từ 3 - 5$</a> <a
+							href="/sapxep/5">Trên 5$</a>
+					</div>
+				</div>
+
+			</div>
+			<lable 	th:if="(${khoanggiasapxep}!=null)" th:text="${khoanggiasapxep}"
+				style="text-align: center; margin: 295px; margin-top: 72px; position: absolute;"
+				class="btn btn-primary" href="/sapxep/sanxuat"></lable>
+		</h2>
+		<div class="contenedorCards" style="margin-top:40px;">
+			<div th:each="item : ${listsanpham}" class="card">
+			<a th:href="@{'/sanpham/chitiet/'+${item.id}}">
+				<div class="wrapper">
+					<div class="colorProd" th:style="'background-color: rgb'+${item.mamau}"></div>
+					<div class="imgProd"
+						th:style="'background-image: url(../site/images/'+${item.image}+')'">
+					</div>
+					<div class="infoProd">
+						<p class="nombreProd" th:text="${item.name}"></p>
+						<p class="extraInfo" th:text="'Ngày sản xuất: ' + ${item.ngaysanxuat} "></p>
+						<p class="extraInfo" th:text="'Mô tả sản phẩm: ' + ${item.mota}"></p>
+						
+
+						<div class="actions">
+							<div class="preciosGrupo">
+								<p class="precio precioOferta" th:text="${item.gia} +'$'"></p>
+								<p class="precio precioProd" th:text="${item.giaSauKhuyenMai} +'$'"></p>
+							</div>
+							<div class="icono action aFavs">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+									<path
+										d="M47 5c-6.5 0-12.9 4.2-15 10-2.1-5.8-8.5-10-15-10A15 15 0 0 0 2 20c0 13 11 26 30 39 19-13 30-26 30-39A15 15 0 0 0 47 5z">
+									</path>
+								</svg>
+							</div>
+							<a href="#" th:onclick="'javascript:card(' + ${item.id} + ')'">
+
+								<i class="lni lni-cart" style="width: 22px; font-size: 33px;"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</a>
+			</div>
+		
+		
+		
+		</div>
+		<!-- <div>
+				<a th:if="${page<=0}" class="btn an btn-outline-primary"
+					th:href="@{/sanpham/sanphamshow(page=${page-1}>0?${page-1}:0,size=${listsanpham.size},sort=${sort},direction=${direction})}"
+					th:text="Prev"> </a>
+					 <a th:if="${page>0}"
+					class="btn btn-outline-primary"
+					th:href="@{/sanpham/sanphamshow(page=${page-1}>0?${page-1}:0,size=${listsanpham.size},sort=${sort},direction=${direction})}"
+					th:text="Prev"> </a> <span
+					th:each="i : ${#numbers.sequence(0,listsanpham.totalPages-1)}">
+
+					<a th:if="${i}==${page}" class="btn btn-primary"
+					th:href="@{/sanpham/sanphamshow(page=${i},size=${listsanpham.size},sort=${sort},direction=${direction})}"
+					th:text="${i+1}"> </a>
+					 <a th:if="${i}!=${page}"
+					class="btn btn-outline-primary"
+					th:href="@{/sanpham/sanphamshow(page=${i},size=${listsanpham.size},sort=${sort},direction=${direction})}"
+					th:text="${i+1}"> </a>
+
+
+				</span> <a th:if="${page}<${listsanpham.totalPages-1}"
+					class="btn btn-outline-primary"
+					th:href="@{/sanpham/sanphamshow(page=${page+1}<${listsanpham.size}?${page+1}:${listsanpham.size-1},size=${listsanpham.size},sort=${sort},direction=${direction})}"
+					th:text="Next"> </a> <a
+					th:if="${page}>=${listsanpham.totalPages-1}"
+					class="btn an btn-outline-primary"
+					th:href="@{/sanpham/sanphamshow(page=${page+1}<${listsanpham.size}?${page+1}:${listsanpham.size-1},size=${listsanpham.size},sort=${sort},direction=${direction})}"
+					th:text="Next"> </a>
+			</div> -->
+		<div class="bodyloaisanpham">
+			<div class="wrapper ">
+
+				<h2>
+					<strong>Sự kiện trong tháng</strong>
+				</h2>
+
+				<div class="news">
+
+					<figure class="article">
+
+						<img src="../site/images/anh-hinh-nen-yasu-hd-dep-nhat.png" />
+
+						<figcaption>
+
+							<h3>Khuyến mãi trong tháng</h3>
+
+							<p>Khuyến mãi tất cả mô hình đến từ nhà sản xuất Liên minh huyền thoại.</p>
+
+						</figcaption>
+
+					</figure>
+
+					<figure class="article">
+
+						<img src="../site/images/news1.jpg"  />
+
+						<figcaption>
+
+							<h3>Cập nhật</h3>
+
+							<p>Nhiều tính năng mới sắp được cập nhật.</p>
+
+						</figcaption>
+
+					</figure>
+
+					<figure class="article">
+
+						<img src="../site/images/news2.png"  />
+
+						<figcaption>
+
+		
+							<h3>Khuyến mãi trong tháng</h3>
+
+							<p>Khuyến mãi tất cả mô hình đến từ nhà sản xuất Liên minh huyền thoại.</p>
+
+						</figcaption>
+
+					</figure>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<script
+		src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js"></script>
+
+	<script
+		src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+
+</body>
+
+</html>

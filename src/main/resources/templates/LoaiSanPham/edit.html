@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{LayoutWeb/dashboardLayout.html}">
+
+<head>
+<meta charset="UTF-8">
+<style>
+.hiden {
+	visibility: hidden;
+	z-index: -1;
+	position: absolute;
+}
+</style>
+</head>
+
+<body translate="no">
+	<div layout:fragment="content">
+		<div class="section">
+			<div class="containter row justify-content-center">
+				<div class="col-4 m-auto">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="section-title ">
+									<h5 class="a-h5">Chỉnh sửa loại sản phẩm</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+		<div class="container">
+			<div class="col-4">
+				<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+					data-bs-target="#exampleModal">
+					<a class="btn btn-primary" th:href="@{/loaisanpham/danhsach}">
+						Danh sách loại sản phẩm</a>
+				</button>
+			</div>
+
+			<table class="table table-striped table-hover"
+				style="margin-top: 10px; margin-bottom: 224px;">
+				<thead>
+					<tr style="background: black; color: white;">
+						<th scope="col">ID</th>
+						<th scope="col">Tên loại sản phẩm</th>
+						<th scope="col">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<form id="contactForm" th:action="@{/loaisanpham/SaveEdit}"
+							th:object="${loaisanpham}" method="post">
+							<td><input name="id" th:value="${loaisanphamid}"
+								readonly="readonly" /></td>
+							<td><input class="form-control" type="text"
+								placeholder="Nhập tên loại sản phẩm" required name="name"
+								th:value="${loaisanphamname}" /></td>
+							<td><button class="btn btn-primary btn-sm " type="submit">Lưu</button>
+							</td>
+						</form>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+
+</html>

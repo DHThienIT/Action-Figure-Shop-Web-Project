@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{LayoutWeb/dashboardLayout.html}">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        table>thead {
+            vertical-align: top !important;
+        }
+    
+        .cartDetail-img {
+            height: 10rem;
+        }
+    
+        #total {
+            text-align: right;
+        }
+    
+        .thanhtoan {
+            width: 112px;
+            height: 38px;
+            background-color: #006400;
+        }
+    
+        .cart_soluong {
+            width: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" layout:fragment="content">
+        <div class="section">
+            <div class="containter row justify-content-center">
+                <div class="col-4" style="    margin-bottom: 26px !important;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="section-title ">
+                                    <h5 class="a-h5">Thông tin sản phẩm</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-10 row align-items-start " > 
+                    <div class="col-4" style="    margin-bottom: 15px;
+                    margin-left: -109px;">
+                        <a href="/sanpham/sanphamshow" class="btn btn-primary">
+                           Tiếp tục mua hàng
+                        </a>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+        <div th:if="${session.tong==null or session.tong==0}" style="text-align: center;"> <h3 ><img th:src="@{/site/images/no-products-found.png}" />Bạn chưa có sản phẩm nào</h3></div>
+    <div th:if="${session.tong>0}" class=" list">
+            <form enctype="multipart/form-data" action="/sanpham/card_show" method="POST">
+                <div class="container">
+                <table id="table" class="table table-striped table-hover">
+                    <thead>
+                        <tr style="background: black;color: white;">
+                            <th scope="col">Hình ảnh</th>
+                            <th scope="col">Tên</th>
+                            <th scope="col">Giá sản phẩm</th>
+                            <th scope="col">Số lượng</th>
+                            <th scope="col">Actions</th>
+                  
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr id="showcard" th:each="item : ${card}">
+                                <td style="width: 0px;"><img th:src="@{'/site/images/'+${item.image}}" alt="ảnh sản phẩm" class="cartDetail-img"></td>
+                                <td th:text="${item.name}"></td>
+                                <td  th:text="${item.giaSauKhuyenMai}"></td>
+                       
+                                <td><input th:id="${item.id}" th:onclick="'javascript:getsl(' + ${item.id} + ')'" th:value="${item.soluong}" th:onchange="'javascript:soluong(' + ${item.id} + ')'" th:onkeyup="'javascript:soluong(' + ${item.id} + ')'" type="number" style="width:80px;text-align: center;"  class="soluong form-control"></td>
+                                <td th:onclick="'javascript:xoacard(' + ${item.id} + ')'"   >
+                                    <a  th:href="@{'xoacard/'+${item.id}}"    class="btn-close btn-primary btn">
+                                 
+                                    </a>
+                                </td>
+                   
+                            </tr>
+                           
+
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-between" style="margin-bottom: 20px;">
+                    <button style="height: 70px; width: 120px;margin-left: 550px;" id="thanhtoan" type="submit" class="btn btn-primary thanhtoan">Thanh toán</button>
+                    <h3  id="total">Tổng giá tiền: <span th:text="${tong}?${tong}:0"> </span> $</h3>
+                </div>
+            </div>
+            </form>
+ 
+            <div style="height: 200px;"></div>
+
+    </div>
+</div>
+</body>
+

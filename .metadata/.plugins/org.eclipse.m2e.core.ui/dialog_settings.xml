@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="MavenProjectImportWizardPage">
+		<list key="rootDirectory">
+			<item value="D:\TN412\DuAnBaiTapNhomJava_V1\BaiTapNhom11_11"/>
+			<item value="D:\TN412\BaiTapNhom_All\Bai_tap_nhom_TN218_04"/>
+			<item value="D:\TN412\DuAnBaiTapNhomJava_V1\DuAnTamGuiVaoNgay30102022\Bai_tap_nhom_TN218_04"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+</section>

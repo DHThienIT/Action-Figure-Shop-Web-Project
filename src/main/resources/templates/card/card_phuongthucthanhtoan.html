@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{LayoutWeb/dashboardLayout.html}">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../site/css/PaymentMethod.css" />
+<link rel="image" href="../site/css/PaymentMethod.css" />
+</head>
+<body>
+	<div class="container" layout:fragment="content"
+		style="MARGIN-BOTTOM: 24px;">
+		<div class="alert alert-danger" th:if="${error != null}"
+			th:text="${error}" style="text-align: center;"></div>
+		<div class="iphone" style="width: 484px;">
+			<form action="/pay" class="form" th:object="${payment}" method="POST">
+				<fieldset>
+					<legend>Phương Thức Thanh Toán</legend>
+					<hr align="center" size="4px" />
+
+
+
+					<div class="form__radios">
+
+						<div
+							th:each="model : ${T(com.baitapnhom.entity.PaymentMethodEnum).values()}">
+							<!-- <div class="form__radio" th:if="${model.displayValue != 'Thanh Toán Trực Tiếp'}"> -->
+							<div class="form__radio">
+								<label th:for="${#ids.next('paymentMethodEnum')}"> <img
+									th:src="@{'/site/img/PaymentMethod/' + ${model.imageName}}"
+									class="icon" alt="ảnh lỗi!"> <span
+									th:text="${model.displayValue}"></span>
+								</label> <input required type="radio" th:field="*{paymentMethodEnum}"
+									th:value="${model}" class="custom-control-input">
+							</div>
+
+						</div>
+					</div>
+				</fieldset>
+
+				<div>
+					<div id="title">Các khoản tiền thanh toán</div>
+
+					<table>
+						<tbody>
+							<tr>
+								<td>Tiền các sản phẩm</td>
+								<td align="right" th:text="${tong2}+'$ ('+${tong}+' VND)'"></td>
+							</tr>
+							<tr>
+								<td>Phí vận chuyển</td>
+								<td align="right"
+									th:text="${phiVanChuyen2} + '$ ('+ ${phiVanChuyen}+' VND)'"></td>
+							</tr>
+							<tr th:if="${voucher}!=0" )>
+								<td>Voucher giảm giá</td>
+								<td align="right" th:text="${voucher}+'%'"></td>
+							</tr>
+
+						</tbody>
+						<tfoot>
+							<tr>
+								<td>Tổng tiền</td>
+								<td align="right"
+									th:text="${totalUSD} + '$ (' + ${total} + ' VND)'"></td>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+
+				<div class="btn">
+					<button class="button button--full" type="submit">
+						<img src="../site/img/PaymentMethod/shopping-bag.svg"
+							alt="Italian Trulli" class="icon"> Thanh Toán Ngay
+					</button>
+
+					<a href="/" class="button1 button--full" style="margin-top: 0.5em;">
+						Huỷ Thanh Toán</a>
+				</div>
+			</form>
+		</div>
+	</div>
+	</div>
+</body>
+</html>

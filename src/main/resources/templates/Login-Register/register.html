@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" 
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+    layout:decorate="~{LayoutWeb/dashboardLayout.html}">
+
+<head>
+<meta charset="UTF-8" />
+</head>
+<body >
+    <div style="height: 500px; margin-bottom: 350px"layout:fragment="content" >
+    <div class="login-box"  >
+        <h3>Đăng ký</h3>
+        <form method="POST" th:action="@{/dangky}" th:object="${user}">
+            <div class="user-box">
+                <input type="text" name="fullname" th:field="*{fullname}" required="">
+                <label>Họ tên khách hàng</label>
+            </div>
+            <div class="user-box">
+                <input type="text" name="username" th:field="*{username}"  required="">
+                <label>Tài khoản</label>
+            </div>
+            <div class="user-box">
+                <input type="password" name="password" th:field="*{password}"  pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,}" required="">
+                <label>Mật khẩu</label>
+            </div>
+            <div class="user-box">
+                <input type="password" name="password2"  required="">
+                <label>Nhập lại mật khẩu</label>
+            </div>
+            <div class="user-box">
+                <input type="text" name="address" th:field="*{address}" required="">
+                <label>Địa chỉ</label>
+            </div>
+            <div class="user-box">
+                <input type="email" name="Email" th:field="*{Email}" required="">
+                <label>Email</label>
+            </div>
+            <div class="user-box">
+                <input type="text" name="phone" th:field="*{phone}"pattern="0[9|8|1|7|3|5]([0-9]|\s|-|\.){8,12}" required="">
+                <label>Số điện thoại</label>
+            </div>
+            
+            <div>
+                <input type="checkbox"  required="" name="ischeck"> <span style="color: #fff;">Tôi đồng ý điều khoản</span>
+                <a href="/login"
+                    style="color: rgb(255, 153, 0); float: right; margin-right: 5px;text-decoration: none;">Tôi đã có tài khoản</a>
+            </div>
+            <span class="validationError" th:if="${isfix}" th:text="${khongtrungmatkhau}" style="color: rgb(255, 0, 43);  margin-right: 5px;text-decoration: none;">Name Error</span>
+            <br/>
+            <button type="submit" style="width: 100%; text-align: center;background: linear-gradient(#141e30, #243b55); border: #fff;" class="clasaa button">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Đăng ký
+            </button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

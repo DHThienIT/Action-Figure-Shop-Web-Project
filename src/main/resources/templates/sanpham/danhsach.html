@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{LayoutWeb/dashboardLayout.html}">
+
+<head>
+<meta charset="UTF-8">
+<style>
+.hiden {
+	visibility: hidden;
+	z-index: -1;
+	position: absolute;
+}
+</style>
+</head>
+
+<body translate="no">
+	<div layout:fragment="content">
+		<div class="section">
+			<div class="containter row justify-content-center">
+				<div class="col-4 m-auto">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="section-title ">
+									<h5 class="a-h5">Danh sách sản phẩm</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-10 row align-items-start ">
+					<div class="col-4">
+						<button type="button" class="btn btn-primary"
+							data-bs-toggle="modal" data-bs-target="#exampleModal">
+							Thêm sản phẩm</button>
+
+
+						<!-- Modal -->
+						<div class="modal fade" id="exampleModal" tabindex="-1"
+							aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">		
+										<button type="button" class="btn-close"
+											data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body">
+										<div class="container">
+											<div class="row justify-content-center">
+												<div class="col-lg-8" style="margin-right: 137px;">
+													<div class="card border-0 rounded-3 shadow-lg"
+														style="width: 408px;">
+														<div class="card-body p-4">
+															<div class="text-center">
+																<div class="h1 fw-light">
+																	<h5 class="a-h5">Thêm sản phẩm</h5>
+																</div>
+
+																<!-- <p class="mb-4 text-muted">A functional, Bootstrap 5
+                                                                    contact form with validation built using SB Forms.
+                                                                    Try it out!</p> -->
+															</div>
+
+															<form id="contactForm" th:action="@{/sanpham/them}"
+																enctype="multipart/form-data" method="post">
+																<!-- Name Input -->
+																<div class="form-floating mb-3">
+																	<input class="form-control" type="text" name="name"
+																		placeholder="name" required /> <label for="name">Tên
+																		sản phẩm</label>
+
+																</div>
+
+																<!-- Email Input -->
+																<div class="form-floating mb-3">
+																	<div class="input-group mb-3">
+																		<div class="input-group-prepend">
+																			<span class="input-group-text">Loại sản phẩm:</span>
+																		</div>
+																		<select class="form-control" required name="loaiSanPham"
+																			style="display: block;">
+																			<option th:each="itemm : ${loaisanpham}"
+																				th:value="${itemm.id}" th:text="${itemm.name}">Tên
+																				loại sản phẩm</option>
+																		</select>
+																	</div>
+																	<div class="input-group mb-3">
+																		<div class="input-group-prepend">
+																			<span class="input-group-text">Nhà sản xuất:</span>
+																		</div>
+																		<select required class="form-control"
+																			style="display: block;" name="nhaSanXuat">
+
+																			<option th:each="itemm : ${nhaSanXuat}"
+																				th:text="${itemm.name}" th:value="${itemm.id}">CTYA</option>
+
+																		</select>
+																	</div>
+																	<div class="input-group mb-3">
+																		<div class="input-group-prepend">
+																			<span class="input-group-text">Màu nền:</span>
+																		</div>
+																		<select required class="form-control"
+																			style="display: block;" name="mauNen">
+
+																			<option  th:value="1">Đỏ</option>
+																			<option  th:value="2">Đen</option>
+																			<option  th:value="3">Xanh</option>
+																			<option  th:value="4">Xám</option>
+
+																		</select>
+																	</div>
+																	<div class="input-group mb-3">
+																		<div class="input-group mb-3">
+																			<img id="hinhmau" src="#" class="hiden"
+																				style="height: 200px; width: 200px;">
+																		</div>
+																		<br> <input required id="anh" type="file" name="file" /><br />
+																		<br />
+																		<div class="input-group mb-3">
+																			<img id="hinhmau" src="#" class="hiden"
+																				style="height: 200px; width: 200px;">
+
+																		</div>
+																		<br /> <br />
+
+																	</div>
+
+																</div>
+
+																<!-- SDT Input -->
+																<div class="form-floating mb-3">
+																	<input class="form-control" id="phone" name="gia"
+																		type="number" placeholder="Giá : 35000 vnđ" required />
+																	<label for="phoneAddress">Giá sản phẩm</label>
+
+
+																</div>
+																<div class="form-floating mb-3">
+																	<input class="form-control" id="phone" name="soluong"
+																		type="number" placeholder="Số lượng" required /> <label
+																		for="soluong">Số lượng sản phẩm</label>
+																</div>
+
+																<div class="input-group mb-3">
+																	<div class="input-group-prepend">
+																		<span class="input-group-text">Phần trăm khuyến
+																			mãi:</span>
+																	</div>
+																	<select class="form-control" required name="khuyenmai"
+																		style="display: block;">
+																		<option th:each="itemm : ${khuyenmai}"
+																			th:value="${itemm.id}" th:text="${itemm.name}">Chọn
+																			khuyến mãi</option>
+																	</select>
+																</div>
+
+																<!-- Name Input -->
+																<div class="form-floating mb-3">
+																	<input class="form-control" type="date"
+																		name="ngaysanxuat" required /> <label
+																		for="ngay_san_xuat">Ngày sản xuất</label>
+																</div>
+
+
+
+																<!-- Message Input -->
+																<div class="form-floating mb-3">
+																	<textarea class="form-control" type="text"
+																		placeholder="Message" name="mota"
+																		style="height: 10rem;" data-sb-validations="required"></textarea>
+																	<label for="mota">Thông tin chi tiết sản phẩm</label>
+
+																</div>
+
+																<!-- Submit button -->
+																<div class="d-grid">
+																	<button class="btn btn-primary btn-lg "
+																		id="submitButton" type="submit">Submit</button>
+																</div>
+															</form>
+															<!-- End of contact form -->
+
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary"
+											data-bs-dismiss="modal">Close</button>						
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<div th:if="${khongthem}!=null" class="alert alert-danger"
+						role="alert" style="margin-top: 25px;" th:text="${khongthem}">
+						A simple danger alert—check it out!</div>
+					<div th:if="${them}!=null" class="alert alert-success" role="alert"
+						style="margin-top: 25px;" th:text="${them }"></div>
+				</div>
+
+			</div>
+		</div>
+		<div class="container">
+			<table class="table table-striped table-hover"
+				style="margin-top: 10px;">
+				<thead>
+					<tr style="background: black; color: white;">
+						<th scope="col">ID</th>
+						<th scope="col" style="width: 169px;">Tên nơi sản phâm</th>
+						<th scope="col">Hình ảnh</th>
+						<th scope="col">Mô tả</th>
+						<th scope="col">Giá</th>
+						<th scope="col">Khuyến mãi</th>
+			<!-- 			<th scope="col">Giá sau khuyến mãi</th> -->
+						<th scope="col">Ngày sản xuất</th>
+						<th scope="col">Loại sản phẩm</th>
+						<th scope="col">Nhà sản xuất</th>
+						<th scope="col">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="item : ${listsanpham}">
+						<td th:text="${item.id}"></td>
+						<td th:text="${item.name}"></td>
+						<td>
+							<img style="width: 140px;height:100px; " th:src="@{'site/images/' + ${item.image}}" alt="lỗi">
+						</td>
+						<td th:text="${item.mota}"></td>
+						<td th:text="${item.gia}"></td>
+						<td th:text="${item.khuyenmai.name}"></td>
+					<!-- 	<td th:text="${item.giaSauKhuyenMai}"></td> -->
+						<td th:text="${item.ngaysanxuat}"></td>
+						<td th:text="${item.loaiSanPham.name}"></td>
+						<td th:text="${item.nhaSanXuat.name}"></td>
+
+						<td><a class="btn btn-primary btn-sm "
+							th:href="@{'/sanpham/sua/'+${item.id}}" role="button">Sửa</a>
+							<a class="btn btn-primary btn-sm"
+							th:href="@{'/sanpham/xoa/'+${item.id}}" role="button">Xóa</a></td>
+					</tr>
+				</tbody>
+			</table>
+			
+		</div>
+	</div>
+
+</body>
+
+</html>

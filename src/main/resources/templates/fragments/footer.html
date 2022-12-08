@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head></head>
+
+<body>
+	<div th:fragment="footer">
+		<!-- Content section -->
+
+		<footer class="bg-light text-center text-lg-start"
+			style="width: 100%; background: linear-gradient(#141e30, #243b55) !important; position: absolute; left: 0; right: 0px;">
+			<!-- Grid container -->
+			<div class="container p-4">
+				<!--Grid row-->
+				<div class="row">
+					<!--Grid column-->
+					<div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+						<h5 class="text-uppercase mb-0 text-light"
+							style="margin-top: 10px;">Thông tin</h5>
+
+						<ul class="list-unstyled mb-0">
+							<li><a href="#!" class="text-white">Giới thiệu</a></li>
+							<li><a href="#!" class="text-white">Tuyển dụng</a></li>
+							<li><a href="#!" class="text-white">Điều khoản và Điều
+									kiện</a></li>
+							<li><a href="#!" class="text-white">Chính sách bảo mật</a></li>
+						</ul>
+					</div>
+					<!--Grid column-->
+
+					<!--Grid column-->
+					<div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+						<h5 class="text-uppercase mb-0 text-light"
+							style="margin-top: 10px;">Chăm sóc khách hàng</h5>
+
+						<ul class="list-unstyled mb-0">
+							<li><a href="#!" class="text-white">Liên hệ</a></li>
+							<li><a href="#!" class="text-white">Trả hàng</a></li>
+							<li><a href="#!" class="text-white">Sơ đồ trang</a></li>
+						</ul>
+					</div>
+					<!--Grid column-->
+
+					<!--Grid column-->
+					<div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+						<h5 class="text-uppercase mb-0 text-light"
+							style="margin-top: 10px;">Chức năng khác</h5>
+
+						<ul class="list-unstyled mb-0">
+							<li><a href="#!" class="text-white">Thương hiệu</a></li>
+							<li><a href="#!" class="text-white">Phiếu quà tặng</a></li>
+							<li><a href="#!" class="text-white">Đại lý</a></li>
+							<li><a href="#!" class="text-white">Khuyến mãi</a></li>
+						</ul>
+					</div>
+					<!--Grid column-->
+
+					<!--Grid column-->
+					<div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+						<h5 class="text-uppercase mb-0 text-light"
+							style="margin-top: 10px;">Tài khoản của tôi</h5>
+
+						<ul class="list-unstyled mb-0">
+							<li><a href="#!" class="text-white">Tài khoản của tôi</a></li>
+							<li><a href="#!" class="text-white">Lịch sử đơn hàng</a></li>
+							<li><a href="#!" class="text-white">Danh sách yêu thích</a>
+							</li>
+							<li><a href="#!" class="text-white">Thông báo</a></li>
+						</ul>
+					</div>
+					<!--Grid column-->
+				</div>
+				<!--Grid row-->
+			</div>
+			<!-- Grid container -->
+			<!-- Copyright -->
+			<hr
+				style="margin: 0 30px 0 30px; background-color: #fff; border-top: 0.5px solid rgba(0, 0, 0, .1);">
+			<div class="text-center p-3 text-white"
+				style="background-color: rgb(30, 43, 59);">
+				© 2022 Copyright <a href="https://mdbootstrap.com/"></a>
+			</div>
+			<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+			<script
+				src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+				integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+				crossorigin="anonymous"></script>
+			<!-- Copyright -->
+			<script
+				src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"
+				integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc"
+				crossorigin="anonymous"></script>
+			<script src=https://code.jquery.com/jquery-3.6.0.min.js></script>
+			<script>
+              
+              $(document).ready(function(){
+
+                let i=0;              						
+            	  $('.topup').delay(1500).fadeOut();
+
+
+            	  $("#test").keyup(function(event){
+            		  event.preventDefault()
+            		  var name=$('#test').val();
+            		//  $('div.content').text('test');
+            	   console.log(name);
+            	   event.preventDefault()
+            	   $.ajax({
+            		   
+            	        type:"GET",
+            	        contentType: "application/json",
+            	        data: {
+            	        	name  : name
+            	        },dataType : 'json',
+            	        url: "/search",
+            	       
+            	        success: function(data) {
+            	        	if (data=="")
+            	        		text="";
+            	        	else{
+            	        	const myArray = data.split("/");
+             	        	text="<ul style='position: absolute;background: gainsboro;color: whie;color: white;margin-top: 5px; width: 222px;'>"
+            	        	$.each(myArray, function (index, value) {
+            	        		text+="<li> <a style =' color: deeppink;  font-weight: 600;font-size: 19px;font-style: italic;' href='/search/"+ value+"'>"+value+"</a></li>" 
+            	        		});
+            	        	
+            	       		text+="</ul>"}
+            	        $('div.test').html(text);
+            	        	 console.log(data);
+            	        	
+            	        } 
+
+            	    });
+            	  
+
+            	   
+            	  });
+            	});
+              
+            //thay doi so luong
+              function soluong(id) {
+          	  event.preventDefault()
+      		 var sl=$('#'+id).val();
+      	   console.log("id",id," sl",sl);
+
+          	  let ids=id;
+					if(sl<1){
+						
+						$('#'+id).val(1);
+						alert("Số lượng không được nhỏ hơn 1")
+					}
+					else{
+      	    $.ajax({
+      		   
+      	        type:"GET",
+      	        contentType: "application/json",
+      	        data: {
+      	        	id  : id,
+      	        	soluong :sl
+      	        },dataType : 'text',
+      	        url: "changesl",
+      	       
+      	        success: function(data) {
+						if(data.length>=16){
+							alert('Qua số lượng kho',data);
+							$('#'+id).val(data.substring(15,data.length));
+							console.log(data[16]	);
+							console.log(data.length,data.substring(15,data.length)	);
+						}
+						else{
+      	        	  $('h3#total').html("<h3 id='total'>Tổng giá tiền: <span>"+data+" </span> $</h3>");
+						}
+      	    }
+            });  
+      	   }
+			}
+              
+              
+              
+              ///get sl
+              
+                function getsl(id) {
+            	  event.preventDefault()
+        			i=$('#'+id).val();
+        	 		 console.log("id",id," sl",i);
+            
+        	   }
+              ////add card
+              function card(id) {
+            	  event.preventDefault()
+         		 
+           	   console.log("hhdshdsds",id);
+               	  let ids=id;
+           	   event.preventDefault()
+               
+                event.preventDefault()
+           	   $.ajax({
+           		   
+           	        type:"GET",
+           	        contentType: "application/json",
+           	        data: {
+           	        	id  : ids
+           	        },dataType : 'text',
+           	        url: "/sanpham/add-card",
+           	       
+           	        success: function(data) {
+           	     	if(data.length==13)
+           	            alert('Sản phẩm đã hết hàng');
+           	     	else{
+           	        	if(data.length==10)
+           	            alert('Qua số lượng kho');
+   						else{
+   							if(data.length==14){
+   								window.location.href = "http://localhost:8080/login";
+   								//alert("huhu");
+   							}
+   							else{
+   								$('#sl').html(data);
+   								console.log(data.length);
+   								 alert('Thêm vào giỏ hàng thành công');
+   							}
+   					}
+           	        	}
+
+           	    }
+                 });
+        	   }
+              
+              function deleted(id) {
+            	console.log(id);
+          		if(confirm('Do you want to delete?')){
+          			$.ajax({
+          				type : "GET",
+          				url : "xoa?id=" + id,
+          				success : function(htmldata) {
+          					alert("Delete Successfully !")
+          				
+          				},
+          				error : function(errorThrown) {
+          					alert("something went wrong");
+          				}
+          			});
+          		}
+          	}
+              function xoacard(id) {
+              	console.log(id);
+              	
+            }
+              
+              
+              
+ 			 function ngay() {
+             	 
+
+ 				  var nbd=$('#ngaybd').val();
+ 				  var nkt=$('#ngaykt').val();
+ 				  if(nbd !="" && nkt!="" && nbd>nkt){
+ 					alert("Lỗi! Ngày bắt đầu phải lớn hơn ngày kết thúc");
+ 				  $("#ngaykt").val("");
+ 				}
+ 				 
+           	}
+              
+              ///thay doi ngay
+               
+              function sl() {
+            	  var pt=$('#phantram').val();
+            	  console.log(pt);
+				  if (pt<0){
+					$("#phantram").val(0);
+				  }
+				  if (pt>100){
+						$("#phantram").val(100);
+					  }
+				  
+              
+              
+              }
+              
+              
+              
+			 function ngaybd() {
+            	 
+
+				  var nbd=$('#ngaybd').val();
+				  var nkt=$('#ngaykt').val();
+				  if(nbd !="" && nkt!="" && nbd>nkt){
+					alert("Lỗi! Ngày bắt đầu phải lớn hơn ngày kết thúc");
+				  $("#ngaybd").val("");
+				}
+				 
+          	}
+			  function ngaykt() {
+            	 
+
+				 var nbd=$('#ngaybd').val();
+				 var nkt=$('#ngaykt').val();
+				 if(nbd !="" && nkt!="" && nbd>nkt){
+				 alert("Lỗi! Ngày kết thúc phải lớn hơn ngày bắt đầu");
+				 $("#ngaykt").val("");
+			   }
+				
+			 }
+              
+              
+              
+		</script>
+			<script type="text/javascript">
+$(document).ready(function(){
+	  $("#anh").change(function(event){
+		  event.preventDefault()
+		  var name=$('#anh').val();
+		
+		 
+		var tmppath = URL.createObjectURL(event.target.files[0]);
+            $("#hinhmau").fadeIn("fast").attr('src', tmppath)
+	   console.log("dssdds"+tmppath);
+            $("#hinhmau").removeClass("hiden");
+	 
+
+	   
+	  });
+	});
+</script>
+			<script type="text/javascript">
+$(document).ready(function(){
+	  $("#anh").change(function(event){
+		  event.preventDefault()
+		  var name=$('#anh').val();
+		
+		 
+		var tmppath = URL.createObjectURL(event.target.files[0]);
+            $("#hinhmau").fadeIn("fast").attr('src', tmppath)
+	   console.log("dssdds"+tmppath);
+            $("#hinhmau").removeClass("hiden");
+	 
+
+	   
+	  });
+	});
+</script>
+			<script id="rendered-js">
+	function createTimer() {
+	
+	  const countdownArea = document.querySelector('.countdown');
+	  console.log(countdownArea);
+	  const numbersArea = document.querySelector('.numbers');
+	  console.log(numbersArea);
+	  let interval;
+	  let count = 0;
+	  const height = countdownArea.getBoundingClientRect().height;
+	  console.log(height);
+	  interval = setInterval(() => {
+		count++;
+		const offset = height * count;
+		numbersArea.style.transform = `translateY(-${offset}px)`;
+		console.log(count);
+		if (count >= 30) {
+			$('div.next').html("<a href='/xacnhan'>Nhận mã mới</a>");
+
+
+			$.ajax({
+        		   
+				   type:"GET",
+				   contentType: "application/json",
+				   data: {
+
+				   },dataType : 'json',
+				   url: "timeout",
+				  
+				   success: function(data) {
+					
+				   
+					   alert(data);
+
+			   }
+			 });
+		  clearInterval(interval);
+		}
+	  }, 1000);
+	  console.log(count);
+	}
+	
+	createTimer();
+	//# sourceURL=pen.js
+		</script>
+
+
+		</footer>
+	</div>
+</body>

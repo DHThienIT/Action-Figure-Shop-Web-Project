@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{LayoutWeb/dashboardLayout.html}">
+
+<head>
+</head>
+<body layout:fragment="content">
+	<div class="container">
+		<h3 align="center">Thống  kê doanh thu và số lượng theo tháng</h3>
+
+		<div id="container"
+			style="width: 800px; height: 550px; margin: 0 auto"></div>
+	</div>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script th:inline="javascript">
+    $(function(){
+    Highcharts.chart('container', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Doanh thu tính bằng $ và số lượng tính bằng cái'
+        },
+       
+        xAxis: {
+            categories: [[${surveyMap.keySet()}]],
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            max:1000,
+            title: {
+                text: 'Doanh thu ($) và Số lượng'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.05,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Doanh Thu',
+            data: [[${surveyMap.values()}]]
+        },
+        {
+            name: 'Số Lượng',
+            data: [[${soluongs.values()}]]
+        }]
+    });
+    });
+</script>
+
+</body>
+</html>

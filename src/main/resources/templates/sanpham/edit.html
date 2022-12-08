@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{LayoutWeb/dashboardLayout.html}">
+
+<head>
+<meta charset="UTF-8">
+<style>
+.hiden {
+	visibility: hidden;
+	z-index: -1;
+	position: absolute;
+}
+</style>
+</head>
+
+<body translate="no">
+	<div layout:fragment="content">
+		<div class="section">
+			<div class="containter row justify-content-center">
+				<div class="col-4 m-auto">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="section-title ">
+									<h5 class="a-h5">Chỉnh sửa sản phẩm</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+		<div class="container">
+			<div class="col-4">
+				<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+					data-bs-target="#exampleModal">
+					<a class="btn btn-primary" th:href="@{/sanpham/danhsach}">
+						Danh sách sản phẩm</a>
+				</button>
+			</div>
+			<table class="table table-striped table-hover"
+				style="margin-top: 10px; margin-bottom:    114px;">
+				<thead>
+					<tr style="background: black; color: white;">
+						<th hidden=""  scope="col">ID</th>
+						<th scope="col">Tên sản phâm</th>
+
+						<th scope="col">Loại sản phẩm</th>
+						<th scope="col">Khuyến mãi</th>
+						<th scope="col">Nhà sản xuất</th>
+						<th scope="col">Giá</th>
+						<th scope="col">Hình ảnh</th>
+						<th scope="col">Mô tả</th>
+
+						<th scope="col">Ngày sản xuất</th>
+						<th scope="col">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<form id="contactForm" th:action="@{/sanpham/edit}" enctype="multipart/form-data"
+							th:object="${sanpham}" method="post">
+							<td hidden=""><input class="form-control" type="text" name="id"
+								th:value="${sanpham.id}" readonly="readonly" required /></td>
+							<td><input class="form-control" type="text" name="name"
+								th:value="${sanpham.name}" required /></td>
+							<td><select class="form-control" name="loaiSanPham"
+								style="display: block;">
+									<option selected="selected"
+										th:value="${sanpham.loaiSanPham.id}"
+										th:text="${sanpham.loaiSanPham.name}"></option>
+									<option th:each="itemm : ${loaisanpham}" th:value="${itemm.id}"
+										th:text="${itemm.name}">Tên loại sản phẩm</option>
+							</select></td>
+							
+							
+							
+							<td><select required class="form-control"
+								style="display: block;" name="khuyenmai">
+									<option selected="selected" th:value="${sanpham.khuyenmai.id}"
+										th:text="${sanpham.khuyenmai.name}"></option>
+									<option th:each="itemms : ${khuyenmai}" th:text="${itemms.name}"
+										th:value="${itemms.id}">nHA SAN XUAT</option>
+
+							</select></td>
+							
+							
+							
+							
+							<td><select required class="form-control"
+								style="display: block;" name="nhaSanXuat">
+									<option selected="selected" th:value="${sanpham.nhaSanXuat.id}"
+										th:text="${sanpham.nhaSanXuat.name}"></option>
+									<option th:each="itemm : ${nhasanxuat}" th:text="${itemm.name}"
+										th:value="${itemm.id}">nHA SAN XUAT</option>
+
+							</select></td>
+							<td><input class="form-control" id="phone" name="gia"
+								type="number" th:value="${sanpham.gia}" required /></td>
+							<td><input id="anh" type="file" name="file" /><br /> <br />
+								<img id="hinhmau" style="width: 140px; height: 100px;"
+								th:src="@{'/site/images/' + ${sanpham.image}}" alt="lỗi"></td>
+
+
+							<td><input class="form-control" type="text"
+								th:value="${sanpham.mota}" name="mota"
+								data-sb-validations="required" /></td>
+
+							<td><input class="form-control" type="date"
+								name="ngaysanxuat" th:value="${sanpham.ngaysanxuat}" required /></td>
+
+
+
+							<td><button class="btn btn-primary btn-sm " type="submit">Lưu</button>
+							</td>
+						</form>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</body>
+
+</html>

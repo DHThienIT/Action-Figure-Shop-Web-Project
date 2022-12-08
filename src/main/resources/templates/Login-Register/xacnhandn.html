@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{LayoutWeb/dashboardLayout.html}">
+<meta charset="UTF-8" />
+<head>
+<style>
+/* button styles are here */
+.next {
+	background: white;
+	border-radius: 5px;
+	border: none;
+	padding: 15px 30px;
+	font-size: 24px;
+	font-family: 'Muli';
+	display: block;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	cursor: pointer;
+	transition: 0.3s ease all;
+	line-height: 1;
+	display: flex;
+}
+
+.next:hover {
+	background: #eee;
+}
+
+.icon {
+	margin-right: 8px;
+}
+
+.countdown {
+	line-height: 1;
+	position: relative;
+	display: block;
+	overflow: hidden;
+	margin-left: 6px;
+	width: 33px;
+	height: 24px;
+}
+
+.numbers {
+	position: absolute;
+	top: 0;
+	color: red;
+	left: 0;
+	text-align: center;
+	transition: 0.3s ease transform;
+	text-indent: 0;
+}
+
+.reset {
+	font-size: 12px;
+	padding: 8px 16px;
+	margin: 100px auto 0;
+}
+
+/* body styles go here */
+</style>
+<script>
+        window.console = window.console || function(t) {};
+      </script>
+
+
+
+<script>
+        if (document.location.search.match(/type=embed/gi)) {
+          window.parent.postMessage("resize", "*");
+        }
+      </script>
+
+</head>
+<body>
+	<div style="height: 150px; margin-bottom: 300px"
+		layout:fragment="content">
+		<div class="login-boxx">
+			<h3
+				style="margin-bottom: 10px; font-size: 35px; font-weight: 700; color: turquoise;">Xác
+				nhận tài khoản</h3>
+			<p style="color: white; margin-top: 0px; font-size: 16px;"
+				th:text="'Mã OTP được gửi đến địa chỉ email:                 '+${gmail}"></p>
+			<br>
+			<form th:action="@{/xacnhandn}" method="post">
+				<input type="hidden" name="usernamee" th:value="${usernamee}">
+				<label style="color: red; font-size: 16px; font-weight: 700;"
+					th:if="${error}!=null" th:text="${error}"></label>
+				<div class="user-box" style="margin-bottom: 0px">
+					<input type="number" name="code" required=""
+						style="margin-bottom: 10px" placeholder="Nhập mã OTP">
+					<!-- <a href="/xacnhan"
+                    style="color: rgb(255, 153, 0); text-decoration: none;">Gủi lại mã</a> -->
+
+					<div th:if="${error}!=null"
+						style="color: rgb(255, 153, 0); text-decoration: none;"
+						class="next">
+						<a href="/xacnhan">Nhận mã mới</a>
+					</div>
+
+					<div th:if="${error}==null"
+						style="color: rgb(255, 153, 0); text-decoration: none;"
+						class="next">
+						<a class="get" style="display: inherit; font-weight: 700"> Gửi
+							lại mã( <span class="countdown"> <span class="numbers">
+									<span>30</span> <span>29</span> <span>28</span> <span>27</span>
+									<span>26</span> <span>25</span> <span>24</span> <span>23</span>
+									<span>22</span> <span>21</span> <span>20</span> <span>19</span>
+									<span>18</span> <span>17</span> <span>16</span> <span>15</span>
+									<span>14</span> <span>13</span> <span>12</span> <span>11</span>
+									<span>10</span> <span>09</span> <span>08</span> <span>07</span>
+									<span>06</span> <span>05</span> <span>04</span> <span>03</span>
+									<span>02</span> <span>01</span> <span>0</span>
+							</span>
+
+						</span> )
+						</a>
+					</div>
+				</div>
+
+
+
+
+				<button type="submit" class="clasaa button text-center align-center"
+					style="background: linear-gradient(#141e30, #243b55); margin-left: calc(63px + 2vmin);; border: #fff;">
+					<span></span> <span></span> <span></span> <span></span> Xác nhận
+				</button>
+
+			</form>
+		</div>
+	</div>
+
+</body>
+</html>

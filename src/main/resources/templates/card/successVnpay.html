@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html
+	class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{LayoutWeb/dashboardLayout.html}"
+>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="../site/css/PaymentMethod.css" />
+</head>
+<body>
+	<div class="container" layout:fragment="content">
+		<div class="payment-success">
+		  <div class="header1">
+		    <i class="ion-close-round close"></i>
+		  </div>
+		  
+		  <div class="body1">
+			  <div class="title1">Thanh Toán<br>Thành Công</div>
+			  <img class="main-img1" width="500px" src="https://cdn.chanhtuoi.com/uploads/2022/04/vnpay-la-gi-2-1648920668.jpg.webp" alt="">
+			  	
+			  	<p style="margin-top: 1.5rem;">Đơn hàng của bạn đã được thanh toán thành công!</p>
+			  	<form action="/">
+			  		<button class="btn1 btn-primary1" type="submit">Đồng Ý</button>
+			  	</form>
+		  </div>
+		</div>
+	</div>
+</body>
+</html>

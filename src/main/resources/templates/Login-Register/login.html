@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" 
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+    layout:decorate="~{LayoutWeb/dashboardLayout.html}">
+<meta charset="UTF-8" />
+<head>
+</head>
+<body >
+
+    <div style="height: 150px;margin-bottom: 364px"layout:fragment="content" >
+    		<div
+			th:if="${khongthanhcong}!=null or ${taikhoankhongco}!=null"
+			class="alert alert-danger alert-dismissible"
+			style="height: 57px; position: absolute; float: right; margin-left: 1087px; margin-top:-62px; line-height: 19px; width: 392px;">
+			<a href="#" class="close" data-dismiss="alert" aria-label="close"
+				style="float: right; font-size: 38px;">&times;</a> <strong
+				style="font-size: 20px;">Đăng nhập không thành công!</strong>
+		</div>
+    <div class="login-boxx"  >
+        <h3 >Đăng nhập</h3>
+        <form th:action="@{/j_spring_security_check}" method="post">
+            <div class="user-box">
+                <input type="text" name="username" value="" required="">
+                 <label th:if="${taikhoankhongco}!= null"
+                    style="color: rgb(255, 0, 0);margin-top: 59px; float: right; margin-right: 5px;text-decoration: none;">Tài khoản không đúng.</label>
+                <label>Username</label>
+                 
+            </div>
+            <div class="user-box">
+                <input type="password" name="password" value="" required="">
+                 <label th:if="${matkhaukhongdung}!= null"
+                    style="color: rgb(255, 0, 0);margin-top: 60px; float: right; margin-right: 5px;text-decoration: none;">Mật khẩu nhập không đúng.</label>
+                <label>Password</label>
+            </div>
+            <div>
+                <input type="checkbox" name="luuMatKhauu" value="luuMatkhau"> <span style="color: #fff;">Lưu mật khẩu</span>
+                <a href="/quenmatkhau"
+                    style="color: rgb(255, 153, 0); float: right; margin-right: 5px;text-decoration: none;">Quên mật khẩu?</a>
+            </div>
+            <button type="submit" class="clasaa button" style=" background: linear-gradient(#141e30, #243b55); border: #fff;">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Đăng nhập
+            </button>
+            <a href="/register" style="float: right; background: linear-gradient(#141e30, #243b55); border: #fff;" class="clasaa button">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Đăng ký
+            </a>
+        </form>
+    </div>
+</div>
+</body>
+</html>

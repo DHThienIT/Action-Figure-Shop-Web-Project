@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{LayoutWeb/dashboardLayout.html}">
+
+<head>
+<meta charset="UTF-8">
+<style>
+.hiden {
+	visibility: hidden;
+	z-index: -1;
+	position: absolute;
+}
+</style>
+</head>
+
+<body translate="no">
+	<div layout:fragment="content">
+		<div class="section">
+			<div class="containter row justify-content-center">
+				<div class="col-4 m-auto">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div>
+									<h5 class="ah5">Danh sách sản phẩm khuyến mãi</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-10 row align-items-start ">
+					<div class="col-4">
+						<a href="/sanpham/sendall" class="btn btn-success">
+							Gửi tất cả khuyến mãi</a>
+
+					</div>
+
+				</div>
+			</div>
+			<div class="container">
+				<table class="table table-striped table-hover"
+					style="margin-top: 10px;">
+					<thead>
+						<tr style="background: black; color: white;">
+							<th scope="col">Tên sản phẩm</th>
+							<th scope="col">Tên khuyến mãi</th>
+
+							<th scope="col">Ngày bắt đầu</th>
+							<th scope="col">Ngày kết thúc</th>
+							<th scope="col">Phần trăm khuyến mãi</th>
+							<th scope="col">Chi tiết khuyến mãi</th>
+			
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="item : ${listsanpham}">
+							<td th:text="${item.name}"></td>
+							<td th:text="${item.khuyenmai.name}"></td>
+
+							<td th:text="${item.khuyenmai.ngayBD}"></td>
+							<td th:text="${item.khuyenmai.ngayKT}"></td>
+							<td style="text-align: center;" th:text="${item.khuyenmai.phantramKM}"></td>
+
+							<td><a th:href="@{'/sanpham/chitiet/'+${item.id}}" class="btn" style="background: #ff00bf"
+								 role="button">Xem
+									chi tiết</a>
+								<!-- <div class="modal fade" th:id="'exampleModal'+${item.id}"
+									tabindex="-1" aria-labelledby="exampleModalLabel"
+									aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">				
+											<div class="modal-body">
+												<div class="container">
+													<div class="row justify-content-center">
+														<div class="col-lg-8" style="margin-right: 137px;">
+															<div class="card border-0 rounded-3 shadow-lg"
+																style="width: 408px;">
+																<div class="card-body p-4">
+																	<div class="contenedorCardss">
+																		<div class="card">
+																			<div class="wrapper">
+																				<div class="colorProd"></div>
+																				<div class="imgProd"
+																					th:style="'background-image: url(../site/images/'+${item.image}+')'">
+																				</div>
+																				<div class="infoProd">
+																					<p class="nombreProd" th:text="${item.name}"></p>
+																					<p class="extraInfo"
+																						th:text="${item.mota} +' : '+${item.ngaysanxuat} "></p>
+
+																					<div class="actions">
+																						<div class="preciosGrupo">
+																							<p class="precio precioOferta">9,999</p>
+																							<p class="precio precioProd"
+																								th:text="${item.gia}"></p>
+																						</div>
+																						<div class="icono action aFavs">
+																							<svg xmlns="http://www.w3.org/2000/svg"
+																								viewBox="0 0 64 64">
+									<path
+																									d="M47 5c-6.5 0-12.9 4.2-15 10-2.1-5.8-8.5-10-15-10A15 15 0 0 0 2 20c0 13 11 26 30 39 19-13 30-26 30-39A15 15 0 0 0 47 5z">
+									</path>
+								</svg>
+																						</div>
+																						<a href="#"
+																							th:onclick="'javascript:card(' + ${item.id} + ')'">
+
+																							<i class="lni lni-cart"
+																							style="width: 22px; font-size: 33px;"></i>
+																						</a>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary"
+													data-bs-dismiss="modal">Close</button>
+												<button type="button" class="btn btn-primary">Save
+													changes</button>
+											</div>
+										</div>
+									</div>
+								</div></td>
+ -->
+
+
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

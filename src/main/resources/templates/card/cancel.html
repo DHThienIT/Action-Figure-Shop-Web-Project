@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html
+	class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{LayoutWeb/dashboardLayout.html}"
+>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="../site/css/PaymentMethod.css" />
+</head>
+<body>
+	<div class="container" layout:fragment="content">
+		<div class="payment-success">
+		  <div class="header1">
+		    <i class="ion-close-round close"></i>
+		  </div>
+		  
+		  <div class="body1">
+			  <div class="title1">Thanh Toán Thất Bại</div>
+			  <img class="main-img1" src="../site/img/PaymentMethod/error_icon.svg" alt="" width="150" height="150">
+			  <br><br>
+			  	<p>
+			  		Giao dịch thanh toán không thành công!
+			  		<br>
+			  		Xin vui lòng thử lại.
+			  	</p>
+			  	<form action="/">
+			  		<button class="btn1 btn-primary1" type="submit">Đồng Ý</button>
+			  		<a class="btn1 btn-primary1" th:href="@{/giohang}">Trở về giỏ hàng</a>
+			  		
+			  		<!-- 
+			  		<div class="btn">
+				      	<button class="button button--full" type="submit">
+				      	Về Giỏ Hàng</button>
+				      	<a href="/" class="button1 button--full" style="margin-top: 0.5em;">
+				      	Huỷ Thanh Toán</a>
+		    		</div>
+		    		 -->
+			  	</form>
+		  </div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,175 @@
+
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+  
+<link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+<meta name="apple-mobile-web-app-title" content="CodePen">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+
+<link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+
+
+  <title>CodePen - chức năng countdown timer </title>
+  
+  
+  
+  
+<style>
+/* button styles are here */
+.next {
+  background: white;
+  border-radius: 5px;
+  border: none;
+  padding: 15px 30px;
+  font-size: 24px;
+  font-family: 'Muli';
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: 0.3s ease all;
+  line-height: 1;
+  display: flex;
+}
+.next:hover {
+  background: #eee;
+}
+
+.icon {
+  margin-right: 8px;
+}
+
+.countdown {
+  line-height: 1;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  margin-left: 6px;
+  width: 33px;
+  height: 24px;
+}
+
+.numbers {
+  position: absolute;
+  top: 0;
+  color:red;
+  left: 0;
+  text-align: center;
+  transition: 0.3s ease transform;
+  text-indent: 0;
+}
+
+.reset {
+  font-size: 12px;
+  padding: 8px 16px;
+  margin: 100px auto 0;
+}
+
+/* body styles go here */
+
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body translate="no" >
+  <!-- Nguồn https://scotch.io/tutorials/create-a-cssjs-countdown-timer-->
+<div>
+  <a class="next">
+    Gửi lại mã(
+    <span class="countdown">
+      
+      <span class="numbers">
+ 
+        <span>30</span>
+        <span>29</span>
+        <span>28</span>
+        <span>27</span>
+        <span>26</span>
+        <span>25</span>
+        <span>24</span>
+        <span>23</span>
+        <span>22</span>
+        <span>21</span>
+        <span>20</span>
+        <span>19</span>
+        <span>18</span>
+        <span>17</span>
+        <span>16</span>
+        <span>15</span>
+        <span>14</span>
+        <span>13</span>
+        <span>12</span>
+        <span>11</span>
+        <span>10</span>
+        <span>09</span>
+        <span>08</span>
+        <span>07</span>
+        <span>06</span>
+        <span>05</span>
+        <span>04</span>
+        <span>03</span>
+        <span>02</span>
+        <span>01</span>
+        <span>0</span>
+      </span>
+    
+    </span>
+    )
+</a>
+
+ 
+</div>
+  
+      <script id="rendered-js" >
+function createTimer() {
+
+  const countdownArea = document.querySelector('.countdown');
+  console.log(countdownArea);
+  const numbersArea = document.querySelector('.numbers');
+  console.log(numbersArea);
+  let interval;
+  let count = 0;
+  const height = countdownArea.getBoundingClientRect().height;
+  console.log(height);
+  interval = setInterval(() => {
+    count++;
+    const offset = height * count;
+    numbersArea.style.transform = `translateY(-${offset}px)`;
+    console.log(count);
+    if (count >= 30) {
+     
+      clearInterval(interval);
+    }
+  }, 1000);
+  console.log(count);
+}
+
+createTimer();
+//# sourceURL=pen.js
+    </script>
+
+  
+
+</body>
+
+</html>
+ 
