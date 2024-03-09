@@ -99,7 +99,7 @@ public class ProductController extends Thread {
     private KhuyenmaiRepository khuyenmaiRepository;
     Long id_return;
     private List<String> lstUser=new ArrayList<>() ;
-    private static String UPLOADED_FOLDER = "D:\\TN412\\DuAnBaiTapNhomJava_V1\\11THANG8\\Bai_tap_nhom_TN218_04\\src\\main\\resources\\static\\site\\images\\";
+    private static String UPLOADED_FOLDER = "D:\\TN412\\DuAnBaiTapNhomJava_V1\\BaiTapNhom11_11\\Bai_tap_nhom_TN218_04\\src\\main\\resources\\static\\site\\images\\";
     @RequestMapping(value = "/site/images/{imageBrowes}", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<ByteArrayResource> getImage(@PathVariable("imageBrowes") String image) {

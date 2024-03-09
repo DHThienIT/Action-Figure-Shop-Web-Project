@@ -81,7 +81,7 @@ public class PaymentController extends Thread {
     
 
     @GetMapping("/phuongthucthanhtoan")
-    public String phuongthucthanhtoan(Model model,HttpSession  session) {
+    public String phuongthucthanhtoan(Model model,HttpSession session) {
         model.addAttribute("payment", new PaymentMethod());
         System.out.println("fdffdfd"+session.getAttribute("userimage").toString());
         model.addAttribute("userimage", session.getAttribute("userimage").toString());

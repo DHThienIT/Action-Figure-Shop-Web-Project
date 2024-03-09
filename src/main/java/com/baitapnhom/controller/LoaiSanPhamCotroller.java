@@ -69,7 +69,7 @@ public class LoaiSanPhamCotroller {
         return ResponseEntity.badRequest().build();
     }
     @GetMapping("/danhsach")
-    public String them(Model model, HttpSession session,@PageableDefault(size = 5,sort="id",direction =Direction.ASC) Pageable pageable,@ModelAttribute("direction") String directions,
+    public String them(Model model, HttpSession session, @PageableDefault(size = 5,sort="id",direction =Direction.ASC) Pageable pageable,@ModelAttribute("direction") String directions,
             @CookieValue(value = "isNameCookie", defaultValue = "defaultCookieValue") String cookieValue ) {
         List<LoaiSanPham> listLoaiSanPham=loaiSanPhamRepository.findAll();
         Page<LoaiSanPham> pages=loaiSanPhamRepository.findAll(pageable);

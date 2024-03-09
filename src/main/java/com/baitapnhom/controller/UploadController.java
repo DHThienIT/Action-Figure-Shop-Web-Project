@@ -16,7 +16,7 @@ public class UploadController {
 
     //Save the uploaded file to this folder
 //    private static String UPLOADED_FOLDER = "/tmp/";
-    private static String UPLOADED_FOLDER = "D:\\TN412\\DuAnBaiTapNhomJava_V1\\11THANG8\\Bai_tap_nhom_TN218_04\\src\\main\\resources\\static\\site\\images\\";
+    private static String UPLOADED_FOLDER = "D:\\TN412\\DuAnBaiTapNhomJava_V1\\BaiTapNhom11_11\\Bai_tap_nhom_TN218_04\\src\\main\\resources\\static\\site\\images\\";
 
     @GetMapping("/upanh")
     public String index() {

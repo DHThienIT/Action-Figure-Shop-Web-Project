@@ -43,7 +43,7 @@ public class UserController {
     private HoaDonRepository hoaDonRepository;
     @Autowired
     private UserRepository userRepository;
-    private static String UPLOADED_FOLDER = "D:\\TN412\\DuAnBaiTapNhomJava_V1\\11THANG8\\Bai_tap_nhom_TN218_04\\src\\main\\resources\\static\\site\\images\\";
+    private static String UPLOADED_FOLDER = "D:\\TN412\\DuAnBaiTapNhomJava_V1\\BaiTapNhom11_11\\Bai_tap_nhom_TN218_04\\src\\main\\resources\\static\\site\\images\\";
  
     @GetMapping("bieudo")
     public String bieudo(Model model, HttpSession session,

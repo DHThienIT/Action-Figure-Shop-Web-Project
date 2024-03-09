@@ -309,7 +309,7 @@ public class HomeController extends Thread {
         }
 
         List<Role> lstrole=new ArrayList<>();
-        Role role=roleRepository.findById(1L).orElseThrow();
+        Role role=roleRepository.findById(2L).orElseThrow();
         lstrole.add(role);
        
         user.setPassword(bcryptEncoder.encode(user.getPassword()));
